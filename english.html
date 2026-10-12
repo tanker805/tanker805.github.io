@@ -50,20 +50,19 @@
     <p class="panelintro">每天 15 个新词、35 个旧词。旧词暂时不足 35 个时，按实际数量练习。</p>
     <div class="stats"><div class="stat"><b id="todayNew">0</b><span>今日新词 / 15</span></div><div class="stat"><b id="todayReview">0</b><span>今日复习 / 35</span></div><div class="stat"><b id="learned">0</b><span>累计已学</span></div><div class="stat"><b id="mastered">0</b><span>熟练掌握</span></div></div>
     <h3 class="sectiontitle">我的词表</h3>
-    <p id="bookNotice" class="note">当前为原有 167 词。导入你的私人词表后，将按照 PDF 中的编号顺序学习。</p>
-    <div class="tools"><label for="importBook">导入私人词表 JSON<input id="importBook" type="file" accept="application/json,.json"></label><button id="exportBook" type="button">导出已导入的私人词表</button></div>
+    <p id="bookNotice" class="note">4427 个单词已内置，打开网页即可按词频顺序学习，无需在手机导入词表。</p>
     <h3 class="sectiontitle">学习记录</h3>
     <p class="note">记录只保存在当前浏览器，尚未自动跨设备同步。更换手机前，请先导出学习记录。</p>
     <div class="tools"><button id="export" type="button">导出学习记录</button><label for="import">导入学习记录<input id="import" type="file" accept="application/json,.json"></label></div>
   </aside>
-  <script src="./english-words.js"></script>
+  <script src="./english-words.js?v=4427-20261012"></script>
   <script>
   (()=>{
     const $=id=>document.getElementById(id),baseWords=window.ENGLISH_WORDS||[];
-    const progressKey="zt-english-progress-v1",bookKey="zt-english-private-book-v1";
+    const progressKey="zt-english-progress-v1";
     let words=baseWords,state={words:{},days:{}},mode="all",current=null,revealed=false,recent=[];
     try{const value=JSON.parse(localStorage.getItem(progressKey)||"null");if(value&&value.words&&value.days)state=value}catch{}
-    try{const book=JSON.parse(localStorage.getItem(bookKey)||"null");if(book?.words?.length){words=book.words;$("bookNotice").textContent=`已导入 ${words.length} 个私人词条；按导入文件顺序学习。`}}catch{}
+    $("bookNotice").textContent=`${words.length} 个单词已内置，打开网页即可按词频顺序学习，无需在手机导入词表。`;
     const day=()=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Shanghai",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
     const plus=(d,n)=>{const value=new Date(d+"T12:00:00Z");value.setUTCDate(value.getUTCDate()+n);return value.toISOString().slice(0,10)};
     function stats(){
@@ -143,22 +142,6 @@
     $("mine").onclick=openPanel;$("openPanel").onclick=openPanel;$("closePanel").onclick=closePanel;
     $("export").onclick=()=>download("英语学习记录-"+day()+".json",JSON.stringify({version:1,exportedAt:new Date().toISOString(),...state},null,2));
     $("import").onchange=async event=>{const file=event.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data.words!=="object"||!data.words||typeof data.days!=="object"||!data.days)throw Error();if(!confirm("导入会覆盖当前浏览器的学习记录，确定继续吗？"))return;state={words:data.words,days:data.days};save();recent=[];draw();alert("学习记录已导入")}catch{alert("文件格式不正确，请选择本站导出的学习记录 JSON")}finally{event.target.value=""}};
-    $("importBook").onchange=async event=>{
-      const file=event.target.files?.[0];if(!file)return;
-      try{
-        const book=JSON.parse(await file.text()),list=book?.words;
-        if(!Array.isArray(list)||list.length<1||list.length>6000)throw Error("词数不正确");
-        const ids=new Set();
-        for(const word of list){
-          if(typeof word.id!=="string"||!word.id||word.id.length>60||typeof word.meaning!=="string"||!word.meaning||!Array.isArray(word.accepts)||!word.accepts.length||!word.accepts.every(value=>typeof value==="string")||typeof word.example!=="string"||typeof word.exampleZh!=="string"||typeof word.pos!=="string"||ids.has(word.id))throw Error("词条格式不正确");
-          ids.add(word.id);
-        }
-        if(!confirm(`导入 ${list.length} 个单词？会替换当前词库，但保留学习进度。`))return;
-        localStorage.setItem(bookKey,JSON.stringify({title:String(book.title||"私人词表"),words:list}));
-        words=list;recent=[];$("bookNotice").textContent=`已导入 ${words.length} 个私人词条；按导入文件顺序学习。`;draw();alert("词表已导入。");
-      }catch(error){alert(`词表导入失败：${error.message||"格式不正确"}`)}finally{event.target.value=""}
-    };
-    $("exportBook").onclick=()=>{const raw=localStorage.getItem(bookKey);if(!raw){alert("尚未导入私人词表。");return}download("英语私人词表.json",raw)};
     stats();draw();
   })();
   </script>
