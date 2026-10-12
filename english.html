@@ -3,49 +3,162 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f6f8f2">
+  <meta name="theme-color" content="#15191a">
   <title>英语练习室 · 专升本与四级</title>
   <style>
-    :root{--green:#285d42;--ink:#183125;--muted:#73877a;--line:#dfe8dc;--paper:#fff;--bg:#f6f8f2}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif;line-height:1.5}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}
-    .wrap{width:min(100%,680px);margin:auto;padding:0 18px 72px}.top{height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{display:flex;align-items:center;gap:10px;font-weight:800}.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--green);color:white;font:bold 25px Georgia}.top small{font-size:11px;color:var(--muted);font-weight:500}.eyebrow{font-size:11px;letter-spacing:1.7px;font-weight:800;color:#6b9775;margin-top:24px}h1{font-size:clamp(30px,7vw,42px);line-height:1.22;letter-spacing:-1px;margin:10px 0 10px}h1 span{color:#46845d}.intro{font-size:14px;color:var(--muted);margin:0 0 26px}.notice{padding:12px 14px;background:#fff8e8;border:1px solid #eee1b8;border-radius:12px;color:#826939;font-size:12px;line-height:1.6;margin:0 0 18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:14px}.stat b{display:block;font-size:23px;color:var(--green)}.stat span{font-size:11px;color:var(--muted)}.tabs{display:flex;gap:9px;margin:18px 0 13px}.tab{border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--green);font-size:13px;font-weight:700;padding:9px 15px}.tab.active{background:var(--green);border-color:var(--green);color:white}.card{background:#fff;border:1px solid var(--line);box-shadow:0 14px 45px #2d4a2b0b;border-radius:19px;padding:25px 22px;min-height:385px}.cardhead{display:flex;align-items:center;justify-content:space-between;color:#6c9676;font-size:11px;font-weight:800}.word{text-align:center;margin:30px 0 25px}.word h2{font:normal 58px Georgia,serif;letter-spacing:-2px;overflow-wrap:anywhere;margin:2px 0;color:#1d3828}.pos{display:inline-block;background:#edf5eb;border-radius:6px;padding:3px 9px;color:var(--green);font-size:12px;font-weight:800}.listen{border:0;background:#e7f3e8;color:var(--green);border-radius:9px;padding:7px 11px;margin-top:10px;font-size:12px}.label{display:block;color:#536d59;font-size:12px;font-weight:800;margin-bottom:9px}.answer{width:100%;height:50px;border:1.5px solid #dbe7da;border-radius:10px;padding:0 13px;outline:none}.answer:focus{border-color:#659b70}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.primary,.quiet{border-radius:10px;padding:12px 15px;font-size:13px;font-weight:800}.primary{border:1px solid var(--green);background:var(--green);color:#fff}.quiet{border:1px solid var(--line);background:white;color:var(--green)}.feedback{border-radius:12px;background:#f1f6ed;padding:15px;margin-top:18px}.feedback.wrong{background:#fff4ed}.feedback strong{display:block;font-size:15px}.feedback p{margin:8px 0;color:#576a5a;font-size:13px}.feedback .en{color:#284735;font-style:italic}.feedback .zh{color:#7b8c7e}.feedback .next{width:100%;margin-top:13px}.empty{text-align:center;padding:62px 10px;color:#778b7b}.empty strong{display:block;color:var(--green);font-size:19px;margin-bottom:8px}.tools{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.tools button,.tools label{border:1px solid var(--line);background:white;color:var(--green);font-size:12px;border-radius:8px;padding:9px 12px;cursor:pointer}.tools input{display:none}.foot{font-size:11px;color:#96a699;line-height:1.7}.error{color:#b13f3f;font-size:12px;margin-top:10px}.hidden{display:none!important}@media(max-width:420px){.wrap{padding-left:15px;padding-right:15px}.stat{padding:12px 10px}.stat b{font-size:20px}.card{padding:20px 17px}.word h2{font-size:49px}.actions{align-items:stretch}.primary,.quiet{padding:11px 12px}}
+    :root{color-scheme:dark;--bg:#15191a;--panel:#1c2222;--line:#303938;--text:#e9efea;--muted:#8c9b94;--accent:#35bd90;--soft:#233b32}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.hidden{display:none!important}
+    .shell{max-width:700px;min-height:100dvh;margin:auto;display:grid;grid-template-rows:auto 1fr auto}.topbar{height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #242b2a}.topbar strong{font-size:15px;letter-spacing:.3px}.topright{display:flex;align-items:center;gap:14px}.mini{font-size:11px;color:var(--muted);white-space:nowrap}.iconbutton{border:0;background:none;color:var(--muted);font-size:26px;line-height:1;width:36px;height:36px;border-radius:8px}.iconbutton:hover{background:var(--panel)}
+    .practice{display:flex;flex-direction:column;min-height:0}.wordpane{text-align:center;padding:clamp(35px,7vh,75px) 18px 25px;border-bottom:1px solid var(--line)}.topic{font-size:11px;color:#6f897e;letter-spacing:1.3px}.wordpane h1{font-size:clamp(50px,10vw,74px);font-weight:400;letter-spacing:-2px;color:var(--accent);overflow-wrap:anywhere;line-height:1.15;margin:13px 0 12px}.pronunciation{display:flex;align-items:center;justify-content:center;gap:8px;color:#aab9b1;font-size:15px}.audio{border:0;background:transparent;color:#bac8c0;padding:5px 7px;font-size:18px}.audio:hover{color:var(--accent)}.error{font-size:12px;color:#eaa3a3;margin:10px 0 0}
+    .recall{width:100%;min-height:40vh;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border:0;background:transparent;color:#b7c3bc;padding:25px;text-align:center}.recall strong{font-size:18px;font-weight:600}.recall span{font-size:13px;color:#65776e}.recall:focus-visible,.iconbutton:focus-visible,.navbtn:focus-visible,.rating button:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+    .answerpanel{flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px 25px 38px;gap:18px}.senses{display:grid;gap:13px}.sense{display:flex;align-items:baseline;gap:10px;font-size:22px;line-height:1.55}.sensepos{min-width:55px;color:var(--accent);font-family:Georgia,serif}.sensetext{color:#e6eee8}.examplebox{padding:16px 0 4px;border-top:1px solid var(--line);font-size:14px;line-height:1.7;color:#aebfb4}.examplebox p{margin:4px 0}.examplezh{color:#768c7f}.exampleaudio{font-size:13px;color:var(--accent);border:0;background:none;padding:7px 0}.rating{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}.rating button{border:1px solid #44504b;border-radius:11px;background:#212928;color:#d5dfd7;min-height:52px;font-size:14px;font-weight:600}.rating button:last-child{border-color:#2f9472;background:#1d493a;color:#a7f2ce}.ratinghint{text-align:center;color:#718379;font-size:11px;margin:0}.empty{align-self:center;text-align:center;padding:30px;color:var(--muted);line-height:1.8}.empty strong{display:block;color:var(--text);font-size:21px;margin-bottom:7px}
+    .bottom{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);background:#1a1e1f}.navbtn{border:0;background:transparent;color:#84958a;min-height:67px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12px}.navbtn .glyph{font-size:22px;line-height:1}.navbtn.active{color:var(--accent)}
+    .panel{position:fixed;inset:0;background:var(--bg);z-index:10;overflow:auto;padding:22px max(20px,calc((100vw - 630px)/2)) 60px}.panelhead{display:flex;align-items:center;justify-content:space-between}.panelhead h2{margin:0;font-size:21px}.panelintro{font-size:13px;color:var(--muted);line-height:1.7;margin:15px 0 26px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:18px}.stat b{display:block;font-size:26px;color:var(--accent)}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:3px}.sectiontitle{font-size:13px;color:#bad2c2;margin:28px 0 11px}.note{font-size:12px;color:var(--muted);line-height:1.75}.tools{display:grid;gap:10px}.tools button,.tools label{display:block;width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);padding:14px 15px;font-size:13px}.tools input{display:none}.tools button:hover,.tools label:hover{border-color:#54826c}
+    @media(max-width:390px){.mini{font-size:10px}.wordpane h1{font-size:48px}.sense{font-size:19px}.sensepos{min-width:48px}.rating{gap:7px}.rating button{font-size:12px}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top"><div class="logo"><span class="mark">E.</span><div>英语练习室<br><small>WORD BY WORD</small></div></div><small>专升本 × 四级</small></header>
-    <div class="eyebrow">YOUR DAILY PRACTICE</div>
-    <h1>今天也<span>进步一点点。</span></h1>
-    <p class="intro">看英文、听发音、写中文意思。答错的词会再出现。</p>
-    <p class="notice">这是可在手机打开的本机版：学习记录保存在当前浏览器，暂未自动跨设备同步。换手机前请先导出备份。</p>
-    <section class="stats" aria-label="学习统计"><div class="stat"><b id="today">0</b><span>今日练习 / 15</span></div><div class="stat"><b id="learned">0</b><span>已学单词</span></div><div class="stat"><b id="mastered">0</b><span>熟练掌握</span></div></section>
-    <nav class="tabs" aria-label="练习模式"><button id="all" class="tab active" type="button">今日练习</button><button id="wrong" class="tab" type="button">错词复习</button></nav>
-    <section class="card" aria-live="polite">
-      <div id="quiz"><div class="cardhead"><span id="topic">核心词</span><span id="count">167 词词库</span></div><div class="word"><h2 id="word">…</h2><span id="pos" class="pos">v.</span><br><button class="listen" id="sayWord" type="button">🔊 听单词</button></div><form id="answerForm"><label class="label" for="answer">用中文写下你的理解</label><input class="answer" id="answer" placeholder="例如：提高、改善" autocomplete="off"><div class="actions"><button class="quiet" id="skip" type="button">不认识，看答案</button><button class="primary" type="submit">提交答案 →</button></div></form><div id="feedback" class="feedback hidden"><strong id="result"></strong><p>参考释义：<b id="meaning"></b></p><p class="en" id="example"></p><p class="zh" id="exampleZh"></p><button class="listen" id="sayExample" type="button">🔊 听例句</button><button class="primary next" id="next" type="button">下一个单词 →</button></div><p class="error hidden" id="voiceError"></p></div>
-      <div id="empty" class="empty hidden"><strong id="emptyTitle">今天学完啦！</strong><span id="emptyBody">明天回来复习。</span></div>
-    </section>
-    <div class="tools"><button id="export" type="button">导出学习记录</button><label for="import">导入学习记录<input id="import" type="file" accept="application/json,.json"></label></div>
-    <p class="foot">单词、例句和词性沿用你的英语练习室词库。朗读依赖手机浏览器的语音功能；浏览器清除网站数据会删除本机记录，请定期导出备份。</p>
+  <div class="shell">
+    <header class="topbar">
+      <strong id="modeLabel">今日练习</strong>
+      <div class="topright"><span class="mini" id="miniStats">新 0/15 · 复 0/35</span><button class="iconbutton" id="openPanel" type="button" aria-label="打开学习设置">⋮</button></div>
+    </header>
+    <main id="practice" class="practice">
+      <div id="wordPane" class="wordpane">
+        <div class="topic" id="topic">四级词汇</div>
+        <h1 id="word">…</h1>
+        <div class="pronunciation"><span id="phonetic">听发音</span><button class="audio" id="sayWord" type="button" aria-label="播放单词发音">◖))</button></div>
+        <p class="error hidden" id="voiceError"></p>
+      </div>
+      <button id="reveal" class="recall" type="button" aria-label="显示词义"><strong>回忆它的意思和读音</strong><span>轻触这里显示答案</span></button>
+      <div id="answerPanel" class="answerpanel hidden">
+        <div id="senses" class="senses"></div>
+        <div id="exampleBox" class="examplebox"><p id="example"></p><p id="exampleZh" class="examplezh"></p><button class="exampleaudio" id="sayExample" type="button">◖)) 听例句</button></div>
+        <div class="rating"><button id="again" type="button">不认识</button><button id="hard" type="button">有点模糊</button><button id="good" type="button">认识</button></div>
+        <p class="ratinghint">选完自动进入下一个单词 · 模糊的词明天再复习</p>
+      </div>
+      <div id="empty" class="empty hidden"><strong id="emptyTitle">今天完成啦</strong><span id="emptyBody"></span></div>
+    </main>
+    <nav class="bottom" aria-label="学习导航">
+      <button id="all" class="navbtn active" type="button"><span class="glyph">◉</span>今日</button>
+      <button id="wrong" class="navbtn" type="button"><span class="glyph">↺</span>错词</button>
+      <button id="mine" class="navbtn" type="button"><span class="glyph">☷</span>我的</button>
+    </nav>
   </div>
+  <aside id="panel" class="panel hidden" aria-label="学习统计与词表设置">
+    <div class="panelhead"><h2>我的学习</h2><button id="closePanel" class="iconbutton" type="button" aria-label="关闭设置">×</button></div>
+    <p class="panelintro">每天 15 个新词、35 个旧词。旧词暂时不足 35 个时，按实际数量练习。</p>
+    <div class="stats"><div class="stat"><b id="todayNew">0</b><span>今日新词 / 15</span></div><div class="stat"><b id="todayReview">0</b><span>今日复习 / 35</span></div><div class="stat"><b id="learned">0</b><span>累计已学</span></div><div class="stat"><b id="mastered">0</b><span>熟练掌握</span></div></div>
+    <h3 class="sectiontitle">我的词表</h3>
+    <p id="bookNotice" class="note">当前为原有 167 词。导入你的私人词表后，将按照 PDF 中的编号顺序学习。</p>
+    <div class="tools"><label for="importBook">导入私人词表 JSON<input id="importBook" type="file" accept="application/json,.json"></label><button id="exportBook" type="button">导出已导入的私人词表</button></div>
+    <h3 class="sectiontitle">学习记录</h3>
+    <p class="note">记录只保存在当前浏览器，尚未自动跨设备同步。更换手机前，请先导出学习记录。</p>
+    <div class="tools"><button id="export" type="button">导出学习记录</button><label for="import">导入学习记录<input id="import" type="file" accept="application/json,.json"></label></div>
+  </aside>
   <script src="./english-words.js"></script>
   <script>
   (()=>{
-    const words=window.ENGLISH_WORDS||[];const key="zt-english-progress-v1";const $=id=>document.getElementById(id);
-    let state={words:{},days:{}},mode="all",current=null,recent=[],answered=false;
-    try{const saved=JSON.parse(localStorage.getItem(key)||"null");if(saved&&typeof saved.words==="object"&&typeof saved.days==="object")state=saved}catch{}
+    const $=id=>document.getElementById(id),baseWords=window.ENGLISH_WORDS||[];
+    const progressKey="zt-english-progress-v1",bookKey="zt-english-private-book-v1";
+    let words=baseWords,state={words:{},days:{}},mode="all",current=null,revealed=false,recent=[];
+    try{const value=JSON.parse(localStorage.getItem(progressKey)||"null");if(value&&value.words&&value.days)state=value}catch{}
+    try{const book=JSON.parse(localStorage.getItem(bookKey)||"null");if(book?.words?.length){words=book.words;$("bookNotice").textContent=`已导入 ${words.length} 个私人词条；按导入文件顺序学习。`}}catch{}
     const day=()=>new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Shanghai",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-    const plus=(d,n)=>{const date=new Date(d+"T12:00:00Z");date.setUTCDate(date.getUTCDate()+n);return date.toISOString().slice(0,10)};
-    const clean=s=>s.trim().toLowerCase().replace(/[\s，。；;、,.!！]/g,"");
-    function save(){localStorage.setItem(key,JSON.stringify(state));stats()}
-    function stats(){const t=state.days[day()]||{attempts:0};$("today").textContent=t.attempts;$("learned").textContent=Object.keys(state.words).length;$("mastered").textContent=Object.values(state.words).filter(p=>p.streak>=3).length}
-    function pick(){const due=words.filter(w=>state.words[w.id]?.due<=day()&&(mode==="all"||state.words[w.id].streak===0));const fresh=mode==="all"?words.filter(w=>!state.words[w.id]):[];return [...due,...fresh].find(w=>!recent.includes(w.id))||[...due,...fresh][0]||null}
-    function draw(){current=pick();answered=false;$("feedback").classList.add("hidden");$("answerForm").classList.remove("hidden");$("voiceError").classList.add("hidden");$("answer").value="";$("quiz").classList.toggle("hidden",!current);$("empty").classList.toggle("hidden",!!current);if(!current){$("emptyTitle").textContent=mode==="wrong"?"错词复习完啦！":"今天可以收工啦！";$("emptyBody").textContent=mode==="wrong"?"暂时没有待复习的错词。":"词库已完成，明天回来复习。";return}$("topic").textContent=current.topic;$("count").textContent=words.length+" 词词库";$("word").textContent=current.id;$("pos").textContent=current.pos||"词性"}
-    function submit(skip){if(!current||answered)return;const input=$("answer").value;const normalized=clean(input);if(!skip&&!normalized)return;const correct=!skip&&normalized.length>=2&&current.accepts.some(a=>{const x=clean(a);return normalized===x||(x.length>=2&&normalized.includes(x))});const today=day(),prev=state.words[current.id];const streak=correct?(prev?.streak||0)+1:0;const interval=correct?[0,1,3,7,14,30,60][Math.min(streak,6)]:0;state.words[current.id]={attempts:(prev?.attempts||0)+1,correct:(prev?.correct||0)+(correct?1:0),streak,due:plus(today,interval),last:today};const t=state.days[today]||{attempts:0,correct:0,newWords:0};t.attempts++;t.correct+=correct?1:0;t.newWords+=prev?0:1;state.days[today]=t;save();answered=true;$("answerForm").classList.add("hidden");$("feedback").classList.remove("hidden");$("feedback").classList.toggle("wrong",!correct);$("result").textContent=correct?"答对了，很棒！":"记住它，下次再来。";$("meaning").textContent=current.meaning;$("example").textContent=current.example;$("exampleZh").textContent=current.exampleZh||""}
-    function say(text){const err=$("voiceError");err.classList.add("hidden");if(!window.speechSynthesis){err.textContent="当前浏览器不支持语音朗读";err.classList.remove("hidden");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.82;u.onerror=()=>{err.textContent="朗读失败，请检查手机语音功能";err.classList.remove("hidden")};speechSynthesis.speak(u)}
-    $("answerForm").addEventListener("submit",e=>{e.preventDefault();submit(false)});$("skip").onclick=()=>submit(true);$("next").onclick=()=>{recent=[current.id,...recent].slice(0,4);draw()};$("sayWord").onclick=()=>current&&say(current.id);$("sayExample").onclick=()=>current&&say(current.example);
-    for(const kind of ["all","wrong"]){$(kind).onclick=()=>{mode=kind;recent=[];for(const k of ["all","wrong"])$(k).classList.toggle("active",k===kind);draw()}}
-    $("export").onclick=()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),...state},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="英语学习记录-"+day()+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000)};
-    $("import").onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data.words!=="object"||!data.words||typeof data.days!=="object"||!data.days)throw Error();if(!confirm("导入会覆盖此浏览器当前的学习记录，确定继续吗？"))return;state={words:data.words,days:data.days};save();recent=[];draw();alert("学习记录已导入")}catch{alert("文件格式不正确，请选择本站导出的 JSON 备份")}finally{e.target.value=""}};
+    const plus=(d,n)=>{const value=new Date(d+"T12:00:00Z");value.setUTCDate(value.getUTCDate()+n);return value.toISOString().slice(0,10)};
+    function stats(){
+      const today=state.days[day()]||{newWords:0,reviewIds:[]};
+      const newCount=today.newWords||0,reviewCount=(today.reviewIds||[]).length;
+      $("todayNew").textContent=newCount;$("todayReview").textContent=reviewCount;
+      $("learned").textContent=Object.keys(state.words).length;
+      $("mastered").textContent=Object.values(state.words).filter(item=>item.streak>=3).length;
+      $("miniStats").textContent=`新 ${Math.min(newCount,15)}/15 · 复 ${Math.min(reviewCount,35)}/35`;
+    }
+    function save(){localStorage.setItem(progressKey,JSON.stringify(state));stats()}
+    function pick(){
+      const today=day(),record=state.days[today]||{newWords:0,reviewIds:[]},reviewed=new Set(record.reviewIds||[]);
+      if(mode==="wrong"){
+        const wrong=words.filter(word=>state.words[word.id]?.streak===0&&state.words[word.id]?.due<=today);
+        return wrong.find(word=>!recent.includes(word.id))||wrong[0]||null;
+      }
+      if((record.newWords||0)<15){const fresh=words.find(word=>!state.words[word.id]);if(fresh)return fresh}
+      if(reviewed.size>=35)return null;
+      const older=words.filter(word=>state.words[word.id]&&state.words[word.id].last<today&&!reviewed.has(word.id));
+      const due=older.filter(word=>state.words[word.id].due<=today);
+      return due.find(word=>!recent.includes(word.id))||due[0]||older.find(word=>!recent.includes(word.id))||older[0]||null;
+    }
+    function draw(){
+      current=pick();revealed=false;
+      $("voiceError").classList.add("hidden");$("answerPanel").classList.add("hidden");$("reveal").classList.remove("hidden");
+      $("wordPane").classList.toggle("hidden",!current);$("empty").classList.toggle("hidden",!!current);
+      if(!current){
+        const record=state.days[day()]||{newWords:0,reviewIds:[]};
+        $("emptyTitle").textContent=mode==="wrong"?"错词复习完啦":"今天的计划完成啦";
+        $("emptyBody").textContent=mode==="wrong"?"暂时没有待复习的错词。":((record.reviewIds||[]).length<35?"旧词不足 35 个，今天已复习完现有旧词。":"新词与复习目标都已完成。") + ((record.newWords||0)<15?" 当前词库已没有新词。":"");
+        $("reveal").classList.add("hidden");return;
+      }
+      $("topic").textContent=current.topic||"四级词汇";
+      $("word").textContent=current.id;
+      $("phonetic").textContent=current.phonetic||"点击喇叭听发音";
+    }
+    function showAnswer(){
+      if(!current||revealed)return;revealed=true;$("reveal").classList.add("hidden");$("answerPanel").classList.remove("hidden");
+      const senses=Array.isArray(current.senses)&&current.senses.length?current.senses:[{pos:current.pos||"词",meaning:current.meaning||""}];
+      const container=$("senses");container.replaceChildren();
+      for(const sense of senses){
+        const row=document.createElement("div"),part=document.createElement("span"),meaning=document.createElement("span");
+        row.className="sense";part.className="sensepos";meaning.className="sensetext";
+        part.textContent=sense.pos||"词";meaning.textContent=sense.meaning||current.meaning;
+        row.append(part,meaning);container.append(row);
+      }
+      $("example").textContent=current.example||"这条词暂时没有例句。";
+      $("exampleZh").textContent=current.exampleZh||"";
+      $("sayExample").classList.toggle("hidden",!current.example);
+    }
+    function rate(level){
+      if(!current||!revealed)return;
+      const today=day(),previous=state.words[current.id],correct=level!=="again";
+      const streak=!correct?0:level==="hard"?1:(previous?.streak||0)+1;
+      const interval=!correct?0:level==="hard"?1:[0,1,3,7,14,30,60][Math.min(streak,6)];
+      state.words[current.id]={attempts:(previous?.attempts||0)+1,correct:(previous?.correct||0)+(correct?1:0),streak,due:plus(today,interval),last:today};
+      const record=state.days[today]||{attempts:0,correct:0,newWords:0,reviewIds:[]};
+      record.attempts++;record.correct+=correct?1:0;record.newWords+=previous?0:1;
+      if(previous&&previous.last<today){record.reviewIds=record.reviewIds||[];if(!record.reviewIds.includes(current.id))record.reviewIds.push(current.id)}
+      state.days[today]=record;save();recent=[current.id,...recent].slice(0,4);draw();
+    }
+    function speak(value){
+      const error=$("voiceError");error.classList.add("hidden");
+      if(!("speechSynthesis" in window)){error.textContent="当前浏览器不支持朗读";error.classList.remove("hidden");return}
+      window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(value);utterance.lang="en-US";utterance.rate=.82;
+      utterance.onerror=()=>{error.textContent="朗读失败，请检查手机语音功能";error.classList.remove("hidden")};
+      window.speechSynthesis.speak(utterance);
+    }
+    function switchMode(next){mode=next;recent=[];$("modeLabel").textContent=next==="wrong"?"错词复习":"今日练习";for(const kind of ["all","wrong"])$(kind).classList.toggle("active",kind===next);closePanel();draw()}
+    function openPanel(){$("panel").classList.remove("hidden");document.body.style.overflow="hidden"}
+    function closePanel(){$("panel").classList.add("hidden");document.body.style.overflow=""}
+    function download(name,data){const blob=new Blob([data],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000)}
+    $("reveal").onclick=showAnswer;$("again").onclick=()=>rate("again");$("hard").onclick=()=>rate("hard");$("good").onclick=()=>rate("good");
+    $("sayWord").onclick=()=>current&&speak(current.id);$("sayExample").onclick=()=>current?.example&&speak(current.example);
+    $("all").onclick=()=>switchMode("all");$("wrong").onclick=()=>switchMode("wrong");
+    $("mine").onclick=openPanel;$("openPanel").onclick=openPanel;$("closePanel").onclick=closePanel;
+    $("export").onclick=()=>download("英语学习记录-"+day()+".json",JSON.stringify({version:1,exportedAt:new Date().toISOString(),...state},null,2));
+    $("import").onchange=async event=>{const file=event.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||typeof data.words!=="object"||!data.words||typeof data.days!=="object"||!data.days)throw Error();if(!confirm("导入会覆盖当前浏览器的学习记录，确定继续吗？"))return;state={words:data.words,days:data.days};save();recent=[];draw();alert("学习记录已导入")}catch{alert("文件格式不正确，请选择本站导出的学习记录 JSON")}finally{event.target.value=""}};
+    $("importBook").onchange=async event=>{
+      const file=event.target.files?.[0];if(!file)return;
+      try{
+        const book=JSON.parse(await file.text()),list=book?.words;
+        if(!Array.isArray(list)||list.length<1||list.length>6000)throw Error("词数不正确");
+        const ids=new Set();
+        for(const word of list){
+          if(typeof word.id!=="string"||!word.id||word.id.length>60||typeof word.meaning!=="string"||!word.meaning||!Array.isArray(word.accepts)||!word.accepts.length||!word.accepts.every(value=>typeof value==="string")||typeof word.example!=="string"||typeof word.exampleZh!=="string"||typeof word.pos!=="string"||ids.has(word.id))throw Error("词条格式不正确");
+          ids.add(word.id);
+        }
+        if(!confirm(`导入 ${list.length} 个单词？会替换当前词库，但保留学习进度。`))return;
+        localStorage.setItem(bookKey,JSON.stringify({title:String(book.title||"私人词表"),words:list}));
+        words=list;recent=[];$("bookNotice").textContent=`已导入 ${words.length} 个私人词条；按导入文件顺序学习。`;draw();alert("词表已导入。");
+      }catch(error){alert(`词表导入失败：${error.message||"格式不正确"}`)}finally{event.target.value=""}
+    };
+    $("exportBook").onclick=()=>{const raw=localStorage.getItem(bookKey);if(!raw){alert("尚未导入私人词表。");return}download("英语私人词表.json",raw)};
     stats();draw();
   })();
   </script>
